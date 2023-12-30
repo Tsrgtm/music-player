@@ -116,7 +116,7 @@
             <i class="fas fa-step-backward"></i>
         </button>
         <button class="btn control-btn" onclick="playPause()" id="play-pause-btn" title="Play/Pause">
-            <i id="play-pause-icon" class="fas fa-play"></i>
+            <i id="play-pause-icon" class="fa-solid fa-play"></i>
         </button>
         <button class="btn control-btn" onclick="nextSong()" title="Next Song">
             <i class="fas fa-step-forward"></i>
@@ -154,14 +154,17 @@
     function playPause() {
         if (musicPlayer.paused) {
             musicPlayer.play();
-            playPauseIcon.className = 'fa-solid fa-pause';
+            playPauseIcon.classList.remove('fa-solid fa-play');
+            playPauseIcon.classList.add('fa-solid fa-pause');
             playPauseBtn.classList.add('btn-primary');
         } else {
             musicPlayer.pause();
-            playPauseIcon.className = 'fa-solid fa-play';
+            playPauseIcon.classList.remove('fa-solid fa-pause');
+            playPauseIcon.classList.add('fa-solid fa-play');
             playPauseBtn.classList.remove('btn-primary');
         }
     }
+
 
     function prevSong() {
         currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
