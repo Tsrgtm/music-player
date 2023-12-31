@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Music Player</title>
+    <title>Dynamic Music Player</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
@@ -12,14 +12,14 @@
             justify-content: center;
             align-items: start;
             height: 100vh;
-            background-color: #343a40; /* Dark background color */
-            color: #ffffff; /* Light text color */
+            background-color: #343a40;
+            color: #ffffff;
         }
 
         #player-container {
             width: 400px;
             text-align: center;
-            margin-top: 20px; /* Adjust margin to accommodate the fixed song list */
+            margin-top: 20px;
         }
 
         #song-list {
@@ -27,12 +27,11 @@
             bottom: 0;
             left: 0;
             right: 0;
-            max-height: 60%; /* Adjust the maximum height as needed */
+            max-height: 60%;
             overflow-y: scroll;
-            background-color: #343a40; /* Match the background color of the body */
+            background-color: #343a40;
             z-index: 1;
         }
-
 
         #timeline-container {
             display: flex;
@@ -43,7 +42,7 @@
 
         #time-progress {
             margin-top: 5px;
-            color: #ffffff; /* White text color */
+            color: #ffffff;
         }
 
         #time-seek {
@@ -57,8 +56,8 @@
         }
 
         #controls .control-btn {
-            background-color: #007bff; /* Blue button color */
-            color: #ffffff; /* White text color */
+            background-color: #007bff;
+            color: #ffffff;
             border: none;
             margin: 5px;
             font-size: 18px;
@@ -66,19 +65,19 @@
         }
 
         #controls .control-btn:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #0056b3;
         }
 
         #shuffle-btn.btn-primary {
-            background-color: #28a745; /* Green button color for active state */
+            background-color: #28a745;
         }
 
         #loop-btn.btn-primary {
-            background-color: #ffc107; /* Yellow button color for active state */
+            background-color: #ffc107;
         }
 
         #play-pause-btn.btn-primary {
-            background-color: #dc3545; /* Red button color for active state */
+            background-color: #dc3545;
         }
 
         .song-list-item {
@@ -133,8 +132,7 @@
 
 <script>
     let songs = [
-       {'file': "music/'Kabira Song' _ Pritam _ Ranbir Kapoor, Deepika Padukone.mp3"}, {'file': 'music/- Saiyyan-320.mp3'}, {'file': 'music/-Billie Eilish, Khalid - lovely-320.mp3'}, {'file': 'music/-XXXTENTACION - SAD!-320.mp3'}, {'file': 'music/A Thousand Years [Official Music Video]-320.mp3'}, {'file': 'music/Aankhon Mein Teri _ Shahrukh Khan Deepika Padukone.mp3'}, {'file': 'music/Aau timi.mp3'}, {'file': 'music/Agar Tum Saath Ho  _ Ranbir Kapoor, Deepika Padukone.mp3'}, {'file': 'music/Ajnabi - Official Music_ Atif Aslam Ft. Mahira Khan.mp3'}, {'file': 'music/Akon - Lonely (Official Music Video)-320.mp3'}, {'file': 'music/Anne-Marie - 2002 [Official Video]-320.mp3'}, {'file': 'music/Apthero Awastha [Official Music Video] Prod. Foeseal-320.mp3'}, {'file': 'music/At my worst.mp3'}, {'file': 'music/Beautiful girls.mp3'}, {'file': 'music/Bekhayali  _ Shahid K,Kiara A_Sandeep Reddy Vanga.mp3'}, {'file': 'music/benny blanco, Halsey -320.mp3'}, {'file': 'music/Bipul Chettri - Asaar-320.mp3'}, {'file': 'music/Bolna Lyric Video - Kapoor -320.mp3'}, {'file': 'music/Chaar dewar-Samir Shrestha-320.mp3'}, {'file': 'music/Comeover_Anne.mp3'}, {'file': 'music/Dan   Shay - Glad You Exist (Lyrics)-320.mp3'}, {'file': 'music/Dandelions.mp3'}, {'file': 'music/Deathbed.mp3'}, {'file': 'music/Dekha Hazaro Dafaa _ Rustom _ Akshay Kumar -320.mp3'}, {'file': 'music/Dil Diyan Gallan _Salman Khan, Katrina Kaif _ Atif Aslam.mp3'}, {'file': 'music/Dil Ko Karaar Aaya - Sidharth Shukla -320.mp3'}, {'file': 'music/Dil Na Jaaneya - Arijit Singh _.mp3'}, {'file': 'music/Dildara Song  _ ShahRukh Khan, Kareena Kapoor-320.mp3'}, {'file': 'music/Ed Sheeran - Happier (Official Music Video)-320.mp3'}, {'file': 'music/Ed Sheeran - Perfect Duet (with Beyoncé) .mp3'}, {'file': 'music/Ed Sheeran - Photograph (Official Music Video)-320.mp3'}, {'file': 'music/Ek Galti Official video-320.mp3'}, {'file': 'music/Ek Ladki Ko Dekha Toh Aisa Laga _ Title Song _.mp3'}, {'file': 'music/Everybody dies in their nightmares.mp3'}, {'file': 'music/Favorite Part Of Me (Lyrics)-320.mp3'}, {'file': 'music/Filhaal2 Mohabbat _ Akshay Kumar Ft Nupur Sanon _.mp3'}, {'file': 'music/Gazab Ka Hai Din_ Tanishk B Jubin N Prakriti K .mp3'}, {'file': 'music/Get You The Moon (Official Video) ft. Snow-320.mp3'}, {'file': "music/Ghalat Fehmi (From 'Superstar')-320.mp3"}, {'file': 'music/Glass Animals - Heat Waves (Official Video)-320.mp3'}, {'file': 'music/Hamari Adhuri Kahani -.mp3'}, {'file': 'music/Harayeko Maya - ShreeGo Feat. Wiffeyy  -320.mp3'}, {'file': 'music/Hawayein -Shah Rukh-320.mp3'}, {'file': 'music/Hope-320.mp3'}, {'file': "music/i hate u, i love u ft. olivia o'brien (music video)-320.mp3"}, {'file': 'music/I just called.mp3'}, {'file': "music/I'm not enough I'm sorry.mp3"}, {'file': 'music/Iktara.mp3'}, {'file': 'music/Itni Si Baat Hain _ Arijit Singh, Pritam-320.mp3'}, {'file': 'music/Jaan Ban Gaye - Khuda Haafiz.mp3'}, {'file': 'music/Jab Koi Baat - DJ Chetas  _ Ft  - Atif Aslam -320.mp3'}, {'file': 'music/Jeremy Zucker - comethru (Official Video)-320.mp3'}, {'file': 'music/Jhoom (Lofi) - JalRaj _ Ali Zafar-320.mp3'}, {'file': 'music/Justin Bieber - Baby ft. Ludacris-320.mp3'}, {'file': 'music/Justin Bieber - Boyfriend-320.mp3'}, {'file': 'music/Kaile Vetne Khai 2 (NYASRO) - Almoda _.mp3'}, {'file': 'music/Kaile Vetne Khai _ _ Almoda Rana Uprety .mp3'}, {'file': 'music/KAUN TUJHE_Amaal Mallik Palak_Sushant Singh Disha Patani.mp3'}, {'file': 'music/Kesariya -Ranbir, Alia, Pritam, Arijit Singh, Amitabh-.mp3'}, {'file': 'music/KHAIRIYAT _ Sushant, Shraddha _ Pritam, Arijit Singh.mp3'}, {'file': 'music/Kho Gaye Hum Kahan _ Sidharth Malhotra.mp3'}, {'file': 'music/Lae Dooba -_ Aiyaary _ Sidharth Malhotra, Rakul Preet .mp3'}, {'file': 'music/Let Me Down Slowly [Official Music Video]-320.mp3'}, {'file': 'music/Liggi.mp3'}, {'file': 'music/Love is gone.mp3'}, {'file': 'music/Love Me Like You Do (Official Video)-320.mp3'}, {'file': 'music/Love story.mp3'}, {'file': 'music/Main Rahoon Ya Na Rahoon Full Video.mp3'}, {'file': 'music/Main Rang Sharbaton Ka I Shahid,Ileana _ Atif Aslam -320.mp3'}, {'file': 'music/Makhna - Sushant Singh Rajput, Jacqueline Fernandez_.mp3'}, {'file': 'music/Mann Bharryaa 2.0 Shershaah _ Sidharth Kiara.mp3'}, {'file': 'music/Marshmello ft. Bastille - Happier.mp3'}, {'file': 'music/Mast Magan -Arijit Singh _ Arjun Kapoor, Alia Bhatt-320.mp3'}, {'file': 'music/Meet Full Song _ Simran _ Kangana Ranaut _ Sachin-Jigar.mp3'}, {'file': 'music/Mera Mann Kehne Laga  _ Nautanki Saala _ .mp3'}, {'file': 'music/Mere Samne Wali Khidki Mein -Kishore Kumar_Pehchan Music.mp3'}, {'file': 'music/Mere yaara.mp3'}, {'file': 'music/Namo Namo - Sushant Rajput _ Sara Ali Khan _ .mp3'}, {'file': 'music/Nazm Nazm - Lyrical _ Bareilly Ki Barfi _ .mp3'}, {'file': 'music/Night changes.mp3'}, {'file': 'music/O re piya.mp3'}, {'file': 'music/Payphone ft. Wiz Khalifa(Official Music Video)-320.mp3'}, {'file': 'music/Phir kabhi.mp3'}, {'file': 'music/Phutki jani joban.mp3'}, {'file': 'music/Pidit (Love Story Part 2)-320.mp3'}, {'file': 'music/Qaarifana.mp3'}, {'file': 'music/Raabta.mp3'}, {'file': 'music/Ranjha.mp3'}, {'file': 'music/Risauni bhaye.mp3'}, {'file': 'music/Rula ke gaya ishq.mp3'}, {'file': 'music/Sakhiyan.mp3'}, {'file': 'music/Samjhawan.mp3'}, {'file': 'music/Sasto mutu.mp3'}, {'file': 'music/Sawarne lage.mp3'}, {'file': 'music/Stay.mp3'}, {'file': 'music/Steal my girl.mp3'}, {'file': 'music/Stereo Hearts ft. Adam Levine [OFFICIAL VIDEO]-320.mp3'}, {'file': "music/Subhanallah' _ Pritam _ Ranbir Kapoor, Deepika Padukone.mp3"}, {'file': 'music/Sushant KC - Behos-320.mp3'}, {'file': 'music/Tenu na bol pawaan.mp3'}, {'file': 'music/Tera fitoor.mp3'}, {'file': 'music/Tera hone laga hoon.mp3'}, {'file': 'music/Tera Yaar Hoon Main  _ Arijit Singh Rochak Kohli.mp3'}, {'file': 'music/Tere Bin Nahi Laage -Sunny Leone _ Ek Paheli Leela-320.mp3'}, {'file': 'music/Thamana haat.mp3'}, {'file': 'music/Tmi khusi tw chhau.mp3'}, {'file': 'music/Trust issues.mp3'}, {'file': 'music/Tu Aake Dekhle  _ Prod. by Shahbeatz _ 320.mp3'}, {'file': 'music/Tu Hi Hai Full Video .mp3'}, {'file': 'music/Tu Hi Yaar Mera _ .mp3'}, {'file': 'music/Tu janne na.mp3'}, {'file': 'music/Tum Jo Aaye _Ajay Devgn,Rahat Fateh Ali Khan.mp3'}, {'file': 'music/Tum Saath Rehnaa (Official Video) _ Nikita Thakur _ 320.mp3'}, {'file': 'music/Tune jo na kaha.mp3'}, {'file': 'music/Until I found you.mp3'}, {'file': 'music/Vaaste.mp3'}, {'file': 'music/Ve Maahi _ Kesari _ Akshay Kumar -320.mp3'}, {'file': 'music/Vilen - Chidiya (Official  Video)-320.mp3'}, {'file': 'music/Who says.mp3'}, {'file': 'music/XXXTENTACION - changes-320.mp3'}, {'file': 'music/Yabesh Thapa - Ae Mutu, feat Zeroo-320.mp3'}, {'file': 'music/Yabesh Thapa - Laakhau Hajarau-320.mp3'}, {'file': 'music/Your eyes (Official Audio) ft. Taqiya Zaman-320.mp3'}
-        // Add more songs as needed
+        {'file': "music/'Kabira Song' _ Pritam _ Ranbir Kapoor, Deepika Padukone.mp3"}, {'file': 'music/- Saiyyan-320.mp3'}, {'file': 'music/-Billie Eilish, Khalid - lovely-320.mp3'}, {'file': 'music/-XXXTENTACION - SAD!-320.mp3'}, {'file': 'music/A Thousand Years [Official Music Video]-320.mp3'}, {'file': 'music/Aankhon Mein Teri _ Shahrukh Khan Deepika Padukone.mp3'}, {'file': 'music/Aau timi.mp3'}, {'file': 'music/Agar Tum Saath Ho  _ Ranbir Kapoor, Deepika Padukone.mp3'}, {'file': 'music/Ajnabi - Official Music_ Atif Aslam Ft. Mahira Khan.mp3'}, {'file': 'music/Akon - Lonely (Official Music Video)-320.mp3'}, {'file': 'music/Anne-Marie - 2002 [Official Video]-320.mp3'}, {'file': 'music/Apthero Awastha [Official Music Video] Prod. Foeseal-320.mp3'}, {'file': 'music/At my worst.mp3'}, {'file': 'music/Beautiful girls.mp3'}, {'file': 'music/Bekhayali  _ Shahid K,Kiara A_Sandeep Reddy Vanga.mp3'}, {'file': 'music/benny blanco, Halsey -320.mp3'}, {'file': 'music/Bipul Chettri - Asaar-320.mp3'}, {'file': 'music/Bolna Lyric Video - Kapoor -320.mp3'}, {'file': 'music/Chaar dewar-Samir Shrestha-320.mp3'}, {'file': 'music/Comeover_Anne.mp3'}, {'file': 'music/Dan   Shay - Glad You Exist (Lyrics)-320.mp3'}, {'file': 'music/Dandelions.mp3'}, {'file': 'music/Deathbed.mp3'}, {'file': 'music/Dekha Hazaro Dafaa _ Rustom _ Akshay Kumar -320.mp3'}, {'file': 'music/Dil Diyan Gallan _Salman Khan, Katrina Kaif _ Atif Aslam.mp3'}, {'file': 'music/Dil Ko Karaar Aaya - Sidharth Shukla -320.mp3'}, {'file': 'music/Dil Na Jaaneya - Arijit Singh _.mp3'}, {'file': 'music/Dildara Song  _ ShahRukh Khan, Kareena Kapoor-320.mp3'}, {'file': 'music/Ed Sheeran - Happier (Official Music Video)-320.mp3'}, {'file': 'music/Ed Sheeran - Perfect Duet (with Beyoncé) .mp3'}, {'file': 'music/Ed Sheeran - Photograph (Official Music Video)-320.mp3'}, {'file': 'music/Ek Galti Official video-320.mp3'}, {'file': 'music/Ek Ladki Ko Dekha Toh Aisa Laga _ Title Song _.mp3'}, {'file': 'music/Everybody dies in their nightmares.mp3'}, {'file': 'music/Favorite Part Of Me (Lyrics)-320.mp3'}, {'file': 'music/Filhaal2 Mohabbat _ Akshay Kumar Ft Nupur Sanon _.mp3'}, {'file': 'music/Gazab Ka Hai Din_ Tanishk B Jubin N Prakriti K .mp3'}, {'file': 'music/Get You The Moon (Official Video) ft. Snow-320.mp3'}, {'file': "music/Ghalat Fehmi (From 'Superstar')-320.mp3"}, {'file': 'music/Glass Animals - Heat Waves (Official Video)-320.mp3'}, {'file': 'music/Hamari Adhuri Kahani -.mp3'}, {'file': 'music/Harayeko Maya - ShreeGo Feat. Wiffeyy  -320.mp3'}, {'file': 'music/Hawayein -Shah Rukh-320.mp3'}, {'file': 'music/Hope-320.mp3'}, {'file': "music/i hate u, i love u ft. olivia o'brien (music video)-320.mp3"}, {'file': 'music/I just called.mp3'}, {'file': "music/I'm not enough I'm sorry.mp3"}, {'file': 'music/Iktara.mp3'}, {'file': 'music/Itni Si Baat Hain _ Arijit Singh, Pritam-320.mp3'}, {'file': 'music/Jaan Ban Gaye - Khuda Haafiz.mp3'}, {'file': 'music/Jab Koi Baat - DJ Chetas  _ Ft  - Atif Aslam -320.mp3'}, {'file': 'music/Jeremy Zucker - comethru (Official Video)-320.mp3'}, {'file': 'music/Jhoom (Lofi) - JalRaj _ Ali Zafar-320.mp3'}, {'file': 'music/Justin Bieber - Baby ft. Ludacris-320.mp3'}, {'file': 'music/Justin Bieber - Boyfriend-320.mp3'}, {'file': 'music/Kaile Vetne Khai 2 (NYASRO) - Almoda _.mp3'}, {'file': 'music/Kaile Vetne Khai _ _ Almoda Rana Uprety .mp3'}, {'file': 'music/KAUN TUJHE_Amaal Mallik Palak_Sushant Singh Disha Patani.mp3'}, {'file': 'music/Kesariya -Ranbir, Alia, Pritam, Arijit Singh, Amitabh-.mp3'}, {'file': 'music/KHAIRIYAT _ Sushant, Shraddha _ Pritam, Arijit Singh.mp3'}, {'file': 'music/Kho Gaye Hum Kahan _ Sidharth Malhotra.mp3'}, {'file': 'music/Lae Dooba -_ Aiyaary _ Sidharth Malhotra, Rakul Preet .mp3'}, {'file': 'music/Let Me Down Slowly [Official Music Video]-320.mp3'}, {'file': 'music/Liggi.mp3'}, {'file': 'music/Love is gone.mp3'}, {'file': 'music/Love Me Like You Do (Official Video)-320.mp3'}, {'file': 'music/Love story.mp3'}, {'file': 'music/Main Rahoon Ya Na Rahoon Full Video.mp3'}, {'file': 'music/Main Rang Sharbaton Ka I Shahid,Ileana _ Atif Aslam -320.mp3'}, {'file': 'music/Makhna - Sushant Singh Rajput, Jacqueline Fernandez_.mp3'}, {'file': 'music/Mann Bharryaa 2.0 Shershaah _ Sidharth Kiara.mp3'}, {'file': 'music/Marshmello ft. Bastille - Happier.mp3'}, {'file': 'music/Mast Magan -Arijit Singh _ Arjun Kapoor, Alia Bhatt-320.mp3'}, {'file': 'music/Meet Full Song _ Simran _ Kangana Ranaut _ Sachin-Jigar.mp3'}, {'file': 'music/Mera Mann Kehne Laga  _ Nautanki Saala _ .mp3'}, {'file': 'music/Mere Samne Wali Khidki Mein -Kishore Kumar_Pehchan Music.mp3'}, {'file': 'music/Mere yaara.mp3'}, {'file': 'music/Namo Namo - Sushant Rajput _ Sara Ali Khan _ .mp3'}, {'file': 'music/Nazm Nazm - Lyrical _ Bareilly Ki Barfi _ .mp3'}, {'file': 'music/Night changes.mp3'}, {'file': 'music/O re piya.mp3'}, {'file': 'music/Payphone ft. Wiz Khalifa(Official Music Video)-320.mp3'}, {'file': 'music/Phir kabhi.mp3'}, {'file': 'music/Phutki jani joban.mp3'}, {'file': 'music/Pidit (Love Story Part 2)-320.mp3'}, {'file': 'music/Qaarifana.mp3'}, {'file': 'music/Raabta.mp3'}, {'file': 'music/Ranjha.mp3'}, {'file': 'music/Risauni bhaye.mp3'}, {'file': 'music/Rula ke gaya ishq.mp3'}, {'file': 'music/Sakhiyan.mp3'}, {'file': 'music/Samjhawan.mp3'}, {'file': 'music/Sasto mutu.mp3'}, {'file': 'music/Sawarne lage.mp3'}, {'file': 'music/Stay.mp3'}, {'file': 'music/Steal my girl.mp3'}, {'file': 'music/Stereo Hearts ft. Adam Levine [OFFICIAL VIDEO]-320.mp3'}, {'file': "music/Subhanallah' _ Pritam _ Ranbir Kapoor, Deepika Padukone.mp3"}, {'file': 'music/Sushant KC - Behos-320.mp3'}, {'file': 'music/Tenu na bol pawaan.mp3'}, {'file': 'music/Tera fitoor.mp3'}, {'file': 'music/Tera hone laga hoon.mp3'}, {'file': 'music/Tera Yaar Hoon Main  _ Arijit Singh Rochak Kohli.mp3'}, {'file': 'music/Tere Bin Nahi Laage -Sunny Leone _ Ek Paheli Leela-320.mp3'}, {'file': 'music/Thamana haat.mp3'}, {'file': 'music/Tmi khusi tw chhau.mp3'}, {'file': 'music/Trust issues.mp3'}, {'file': 'music/Tu Aake Dekhle  _ Prod. by Shahbeatz _ 320.mp3'}, {'file': 'music/Tu Hi Hai Full Video .mp3'}, {'file': 'music/Tu Hi Yaar Mera _ .mp3'}, {'file': 'music/Tu janne na.mp3'}, {'file': 'music/Tum Jo Aaye _Ajay Devgn,Rahat Fateh Ali Khan.mp3'}, {'file': 'music/Tum Saath Rehnaa (Official Video) _ Nikita Thakur _ 320.mp3'}, {'file': 'music/Tune jo na kaha.mp3'}, {'file': 'music/Until I found you.mp3'}, {'file': 'music/Vaaste.mp3'}, {'file': 'music/Ve Maahi _ Kesari _ Akshay Kumar -320.mp3'}, {'file': 'music/Vilen - Chidiya (Official  Video)-320.mp3'}, {'file': 'music/Who says.mp3'}, {'file': 'music/XXXTENTACION - changes-320.mp3'}, {'file': 'music/Yabesh Thapa - Ae Mutu, feat Zeroo-320.mp3'}, {'file': 'music/Yabesh Thapa - Laakhau Hajarau-320.mp3'}, {'file': 'music/Your eyes (Official Audio) ft. Taqiya Zaman-320.mp3'}
     ];
 
     let currentSongIndex = 0;
@@ -152,16 +150,16 @@
     const songList = document.getElementById('song-list');
 
     function playPause() {
-        if (musicPlayer.paused) {
+        if (musicPlayer.paused || musicPlayer.ended) {
             musicPlayer.play();
-            playPauseIcon.classList.remove('fas fa-play');
-            playPauseIcon.classList.add('fas fa-pause');
-            playPauseBtn.classList.add('btn-primary');
+            playPauseIcon.classList.remove('fa-play');
+            playPauseIcon.classList.add('fa-pause');
+            playPauseBtn.classList.remove('btn-primary');
         } else {
             musicPlayer.pause();
-            playPauseIcon.classList.remove('fas fa-pause');
-            playPauseIcon.classList.add('fas fa-play');
-            playPauseBtn.classList.remove('btn-primary');
+            playPauseIcon.classList.remove('fa-pause');
+            playPauseIcon.classList.add('fa-play');
+            playPauseBtn.classList.add('btn-primary');
         }
     }
 
@@ -185,12 +183,12 @@
         musicPlayer.play();
         songTitle.textContent = `Now Playing: ${getFileName(songs[currentSongIndex].file)}`;
         updateSongList();
-        scrollToActiveSong(); // Scroll to the active song
+        scrollToActiveSong();
     }
-
 
     function toggleLoop() {
         isLooping = !isLooping;
+        musicPlayer.loop = isLooping;
         loopBtn.classList.toggle('btn-primary', isLooping);
     }
 
@@ -226,18 +224,6 @@
         return Math.floor(Math.random() * songs.length);
     }
 
-    // Initialize with the first song
-    updateSong();
-
-    // Populate song list
-    updateSongList();
-
-    musicPlayer.addEventListener('timeupdate', updateProgress);
-    musicPlayer.addEventListener('ended', () => nextSong()); // Auto play next song on end
-    musicPlayer.addEventListener('loadedmetadata', updateProgress);
-    timeSeek.addEventListener('input', seekTo);
-
-    // Create a list item for each song
     function updateSongList() {
         songList.innerHTML = '';
         songs.forEach((song, index) => {
@@ -245,7 +231,6 @@
             songList.appendChild(listItem);
         });
     }
-
 
     function scrollToActiveSong() {
         const activeSong = document.querySelector('.song-list-item.active');
@@ -257,7 +242,6 @@
             });
         }
     }
-
 
     function createSongListItem(song, index) {
         const listItem = document.createElement('a');
@@ -277,12 +261,19 @@
         return listItem;
     }
 
-    // Play the selected song from the list
-    function playSong(index) {
-        currentSongIndex = index;
-        updateSong();
-    }
+    // Initialize with the first song
+    updateSong();
+
+    musicPlayer.addEventListener('timeupdate', updateProgress);
+    musicPlayer.addEventListener('ended', () => {
+        nextSong();
+        playPauseIcon.className = 'fas fa-pause'; // Update play/pause icon on song end
+        playPauseBtn.classList.add('btn-primary');
+    });
+    musicPlayer.addEventListener('loadedmetadata', updateProgress);
+    timeSeek.addEventListener('input', seekTo);
 </script>
+
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
